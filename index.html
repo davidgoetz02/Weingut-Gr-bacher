@@ -5,194 +5,415 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Weingut Gröbacher — Südsteiermark</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Josefin+Sans:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400;1,600&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --cream: #f5f0e8;
-    --dark: #1a1208;
-    --wine: #6b1f2a;
-    --gold: #b8965a;
-    --green: #2d3d2a;
-    --muted: #8a7d6a;
-    --light-muted: #e8e0d0;
+    --cream: #faf6ef;
+    --warm-white: #fff9f2;
+    --dark: #2c1f0e;
+    --wine: #7a2535;
+    --gold: #c49a3c;
+    --green: #3a5a2a;
+    --light-green: #e8f0e0;
+    --muted: #7a6a55;
+    --border: #e2d8c8;
+    --text: #3d2e1a;
   }
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-  body { background: var(--cream); color: var(--dark); font-family: 'Cormorant Garamond', serif; overflow-x: hidden; }
+  body {
+    background: var(--cream);
+    color: var(--text);
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 400;
+    overflow-x: hidden;
+  }
 
-  /* NAV */
+  /* ── NAV ── */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
-    padding: 1.2rem 3rem;
-    background: rgba(26,18,8,0.93);
-    backdrop-filter: blur(8px);
+    padding: 1rem 2.5rem;
+    background: rgba(44,31,14,0.95);
+    backdrop-filter: blur(6px);
   }
-  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 300; letter-spacing: 0.25em; color: var(--gold); text-decoration: none; text-transform: uppercase; }
-  .nav-links { display: flex; gap: 2rem; list-style: none; }
-  .nav-links a { font-family: 'Josefin Sans', sans-serif; font-size: 0.62rem; font-weight: 300; letter-spacing: 0.2em; text-transform: uppercase; color: var(--light-muted); text-decoration: none; transition: color 0.2s; }
-  .nav-links a:hover { color: var(--gold); }
+  .nav-logo {
+    font-family: 'Lora', serif;
+    font-size: 1.05rem; font-weight: 600;
+    color: #f0dfa8; text-decoration: none;
+    letter-spacing: 0.04em;
+  }
+  .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.82rem; font-weight: 400;
+    color: rgba(250,246,239,0.75);
+    text-decoration: none; transition: color 0.2s;
+    letter-spacing: 0.02em;
+  }
+  .nav-links a:hover { color: #f0dfa8; }
 
-  /* HERO */
-  .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; }
-  .hero-left { background: var(--dark); display: flex; flex-direction: column; justify-content: flex-end; padding: 5rem 4rem; }
-  .hero-eyebrow { font-family: 'Josefin Sans', sans-serif; font-size: 0.65rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
-  .hero-title { font-size: clamp(3rem, 5vw, 5.5rem); font-weight: 300; line-height: 1.05; color: var(--cream); margin-bottom: 1rem; }
-  .hero-title em { font-style: italic; color: var(--gold); }
-  .hero-subtitle { font-size: 1.2rem; font-weight: 300; font-style: italic; color: var(--muted); line-height: 1.6; margin-bottom: 2.5rem; max-width: 380px; }
-  .hero-cta { display: inline-flex; align-items: center; font-family: 'Josefin Sans', sans-serif; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); text-decoration: none; border-bottom: 1px solid var(--gold); padding-bottom: 0.3rem; transition: opacity 0.2s; width: fit-content; }
-  .hero-cta:hover { opacity: 0.7; }
-  .hero-right { position: relative; overflow: hidden; }
-  .hero-right img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.65) saturate(0.85); }
-  .hero-right::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(107,31,42,0.3) 0%, transparent 60%); pointer-events: none; }
-  .hero-badge { position: absolute; bottom: 3rem; right: 3rem; z-index: 2; width: 110px; height: 110px; border: 1px solid rgba(184,150,90,0.6); border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; background: rgba(26,18,8,0.5); backdrop-filter: blur(6px); }
-  .hero-badge span { font-family: 'Josefin Sans', sans-serif; font-size: 0.55rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); line-height: 1.8; }
-  .hero-badge strong { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 300; color: var(--cream); display: block; }
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    position: relative; overflow: hidden;
+    display: flex; align-items: flex-end;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+  }
+  .hero-bg img {
+    width: 100%; height: 100%; object-fit: cover;
+    /* südsteirische grüne Hügellandschaft */
+    filter: brightness(0.58) saturate(1.1);
+  }
+  .hero-bg::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(44,31,14,0.85) 0%, rgba(44,31,14,0.2) 60%, transparent 100%);
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    padding: 4rem 3.5rem 4.5rem;
+    max-width: 700px;
+  }
+  .hero-tag {
+    display: inline-block;
+    background: var(--wine);
+    color: #f0dfa8;
+    font-size: 0.75rem; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 0.35rem 0.9rem; margin-bottom: 1.5rem;
+    border-radius: 2px;
+  }
+  .hero-title {
+    font-family: 'Lora', serif;
+    font-size: clamp(2.6rem, 5.5vw, 5rem);
+    font-weight: 600; line-height: 1.1;
+    color: #faf6ef; margin-bottom: 1rem;
+  }
+  .hero-title em { font-style: italic; color: #f0dfa8; font-weight: 400; }
+  .hero-sub {
+    font-size: 1.1rem; font-weight: 300;
+    color: rgba(250,246,239,0.8); line-height: 1.7;
+    margin-bottom: 2.2rem; max-width: 480px;
+  }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-main {
+    background: var(--wine); color: #faf6ef;
+    font-size: 0.85rem; font-weight: 600;
+    padding: 0.8rem 2rem; text-decoration: none;
+    border-radius: 3px; transition: background 0.2s;
+    letter-spacing: 0.02em;
+  }
+  .btn-main:hover { background: #912d40; }
+  .btn-ghost {
+    background: rgba(255,255,255,0.12); color: #faf6ef;
+    font-size: 0.85rem; font-weight: 400;
+    padding: 0.8rem 1.8rem; text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 3px; transition: background 0.2s;
+  }
+  .btn-ghost:hover { background: rgba(255,255,255,0.2); }
+  .hero-info-bar {
+    position: absolute; bottom: 0; right: 0; z-index: 2;
+    background: rgba(44,31,14,0.75); backdrop-filter: blur(8px);
+    padding: 1.2rem 2rem;
+    display: flex; gap: 2.5rem; align-items: center;
+  }
+  .info-item { text-align: center; }
+  .info-val {
+    font-family: 'Lora', serif;
+    font-size: 1.5rem; font-weight: 600; color: #f0dfa8;
+  }
+  .info-lbl { font-size: 0.7rem; color: rgba(250,246,239,0.55); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.1rem; }
 
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-  .hero-left > * { animation: fadeUp 0.9s ease both; }
-  .hero-left .hero-eyebrow { animation-delay: 0.1s; }
-  .hero-left .hero-title { animation-delay: 0.25s; }
-  .hero-left .hero-subtitle { animation-delay: 0.4s; }
-  .hero-left .hero-cta { animation-delay: 0.55s; }
+  /* ── AKTUELLES KARTEN ── */
+  .aktuelles { background: var(--warm-white); padding: 3.5rem 2.5rem; }
+  .aktuelles-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.2rem; margin-top: 1.5rem; }
+  .aktuelle-karte {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    transition: box-shadow 0.25s;
+  }
+  .aktuelle-karte:hover { box-shadow: 0 6px 24px rgba(44,31,14,0.1); }
+  .karte-img { width: 100%; height: 160px; object-fit: cover; display: block; }
+  .karte-body { padding: 1.2rem 1.4rem; }
+  .karte-tag {
+    font-size: 0.7rem; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--wine); margin-bottom: 0.4rem;
+  }
+  .karte-titel {
+    font-family: 'Lora', serif;
+    font-size: 1.15rem; font-weight: 600;
+    color: var(--dark); margin-bottom: 0.5rem;
+  }
+  .karte-text { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
 
-  /* NEWS BAND */
-  .news-band { background: var(--wine); display: flex; }
-  .news-item { flex: 1; padding: 2.5rem 3rem; border-right: 1px solid rgba(255,255,255,0.1); transition: background 0.3s; }
-  .news-item:last-child { border-right: none; }
-  .news-item:hover { background: rgba(255,255,255,0.05); }
-  .news-date { font-family: 'Josefin Sans', sans-serif; font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(245,240,232,0.5); margin-bottom: 0.6rem; }
-  .news-headline { font-size: 1.35rem; font-weight: 400; color: var(--cream); margin-bottom: 0.5rem; font-style: italic; }
-  .news-text { font-size: 0.95rem; color: rgba(245,240,232,0.65); line-height: 1.6; }
+  /* ── SECTION HEADERS ── */
+  .sh { margin-bottom: 2rem; }
+  .sh-label {
+    font-size: 0.72rem; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--wine); margin-bottom: 0.4rem;
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .sh-label::after { content: ''; flex: 0 0 32px; height: 2px; background: var(--wine); border-radius: 1px; }
+  .sh-title {
+    font-family: 'Lora', serif;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 600; line-height: 1.2; color: var(--dark);
+  }
+  .sh-title em { font-style: italic; color: var(--wine); font-weight: 400; }
+  .sh-sub { font-size: 1rem; color: var(--muted); line-height: 1.7; margin-top: 0.6rem; max-width: 560px; }
 
-  /* WEINGUT */
-  .weingut-section { display: grid; grid-template-columns: 1fr 1fr; background: var(--dark); }
-  .weingut-text { padding: 6rem 4rem; display: flex; flex-direction: column; justify-content: center; }
-  .section-label { font-family: 'Josefin Sans', sans-serif; font-size: 0.6rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
-  .section-title { font-size: clamp(2rem, 3.5vw, 3.2rem); font-weight: 300; line-height: 1.15; margin-bottom: 1.5rem; }
-  .section-title em { font-style: italic; color: var(--wine); }
-  .weingut-text p { font-size: 1.15rem; font-weight: 300; line-height: 1.85; color: rgba(245,240,232,0.75); margin-bottom: 1.5rem; }
-  .quote-block { border-left: 2px solid var(--gold); padding: 1rem 1.5rem; margin: 2rem 0; font-style: italic; font-size: 1.1rem; color: var(--gold); line-height: 1.7; }
-  .weingut-photos { display: grid; grid-template-rows: 1fr 1fr; min-height: 600px; }
-  .weingut-photo-top { position: relative; overflow: hidden; border-bottom: 3px solid var(--dark); }
-  .weingut-photo-top img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.8) saturate(0.9); transition: transform 0.6s; }
-  .weingut-photo-top:hover img { transform: scale(1.04); }
-  .weingut-photo-bottom { display: grid; grid-template-columns: 1fr 1fr; }
-  .photo-tile { position: relative; overflow: hidden; border-right: 3px solid var(--dark); }
-  .photo-tile:last-child { border-right: none; }
-  .photo-tile img { width: 100%; height: 100%; min-height: 200px; object-fit: cover; filter: brightness(0.75) saturate(0.85); transition: transform 0.6s; }
-  .photo-tile:hover img { transform: scale(1.04); }
-  .photo-tile-label { position: absolute; bottom: 1rem; left: 1rem; font-family: 'Josefin Sans', sans-serif; font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(245,240,232,0.7); background: rgba(26,18,8,0.5); padding: 0.3rem 0.7rem; backdrop-filter: blur(4px); }
+  /* ── WEINGUT ── */
+  .weingut { padding: 5rem 2.5rem; background: var(--cream); }
+  .weingut-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .weingut-fotos { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; gap: 0.8rem; }
+  .wf-main { grid-column: span 2; border-radius: 6px; overflow: hidden; height: 280px; }
+  .wf-main img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s; }
+  .wf-main:hover img { transform: scale(1.03); }
+  .wf-small { border-radius: 6px; overflow: hidden; height: 180px; position: relative; }
+  .wf-small img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s; }
+  .wf-small:hover img { transform: scale(1.04); }
+  .wf-lbl {
+    position: absolute; bottom: 0.6rem; left: 0.7rem;
+    font-size: 0.68rem; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.07em; color: #fff;
+    background: rgba(44,31,14,0.6); padding: 0.2rem 0.5rem;
+    border-radius: 2px; backdrop-filter: blur(4px);
+  }
+  .weingut-text p {
+    font-size: 1rem; color: var(--muted); line-height: 1.8; margin-bottom: 1.2rem;
+  }
+  .zitat {
+    background: var(--light-green);
+    border-left: 3px solid var(--green);
+    border-radius: 0 4px 4px 0;
+    padding: 1rem 1.4rem; margin: 1.5rem 0;
+    font-family: 'Lora', serif;
+    font-style: italic; font-size: 1.05rem;
+    color: var(--green); line-height: 1.7;
+  }
+  .terroir-chips { display: flex; gap: 0.7rem; flex-wrap: wrap; margin-top: 1rem; }
+  .chip {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: 20px; padding: 0.35rem 1rem;
+    font-size: 0.78rem; color: var(--dark); font-weight: 600;
+    display: flex; align-items: center; gap: 0.4rem;
+  }
+  .chip span { color: var(--wine); }
 
-  /* SORTIMENT */
-  .sortiment-section { background: var(--cream); padding: 6rem 3rem; }
-  .wine-tabs { display: flex; margin-bottom: 3rem; border-bottom: 1px solid var(--light-muted); }
-  .wine-tab { font-family: 'Josefin Sans', sans-serif; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; padding: 0.8rem 2rem; cursor: pointer; border: none; background: transparent; color: var(--muted); border-bottom: 2px solid transparent; margin-bottom: -1px; transition: all 0.2s; }
-  .wine-tab.active { color: var(--wine); border-bottom-color: var(--wine); }
-  .wines-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+  /* ── SORTIMENT ── */
+  .sortiment { background: var(--warm-white); padding: 5rem 2.5rem; }
+  .wine-tabs { display: flex; gap: 0.5rem; margin-bottom: 2.5rem; }
+  .wine-tab {
+    font-size: 0.82rem; font-weight: 600; padding: 0.6rem 1.5rem;
+    border-radius: 20px; border: 2px solid var(--border);
+    background: #fff; color: var(--muted); cursor: pointer;
+    transition: all 0.2s;
+  }
+  .wine-tab.active-weiss { background: #f5eed8; border-color: var(--gold); color: var(--dark); }
+  .wine-tab.active-rot { background: #f5e8e8; border-color: var(--wine); color: var(--wine); }
+
+  .wines-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.2rem; }
   .wines-grid.hidden { display: none; }
-  .wine-card { background: white; border: 1px solid var(--light-muted); overflow: hidden; transition: transform 0.25s, box-shadow 0.25s; cursor: pointer; }
-  .wine-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(26,18,8,0.12); }
-  .wine-card-img { width: 100%; height: 180px; object-fit: cover; display: block; filter: saturate(0.9); transition: transform 0.4s; }
-  .wine-card:hover .wine-card-img { transform: scale(1.04); }
-  .wine-card-body { padding: 1.4rem 1.2rem; text-align: center; }
-  .wine-name { font-size: 1.15rem; font-weight: 400; color: var(--dark); margin-bottom: 0.3rem; font-style: italic; }
-  .wine-type { font-family: 'Josefin Sans', sans-serif; font-size: 0.55rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--muted); }
-  .wine-card.rot { border-top: 3px solid var(--wine); }
-  .wine-card.weiss { border-top: 3px solid var(--gold); }
-  .order-cta { text-align: center; margin-top: 3rem; }
-  .btn-primary { display: inline-block; font-family: 'Josefin Sans', sans-serif; font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; background: var(--dark); color: var(--cream); padding: 1rem 3rem; text-decoration: none; border: 1px solid var(--dark); transition: all 0.25s; }
-  .btn-primary:hover { background: transparent; color: var(--dark); }
 
-  /* GALERIE */
-  .galerie-section { padding: 6rem 3rem; background: var(--cream); }
-  .galerie-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.8rem; margin-top: 2.5rem; }
-  .galerie-item { overflow: hidden; cursor: pointer; position: relative; }
-  .galerie-item.large { grid-column: span 2; grid-row: span 2; }
-  .galerie-item img { width: 100%; height: 100%; min-height: 200px; object-fit: cover; display: block; transition: transform 0.5s ease, filter 0.3s; filter: saturate(0.85); }
-  .galerie-item.large img { min-height: 420px; }
-  .galerie-item:hover img { transform: scale(1.05); filter: saturate(1.05) brightness(1.05); }
+  .wine-card {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: 8px; overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: default;
+  }
+  .wine-card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(44,31,14,0.1); }
+  .wine-photo { width: 100%; height: 190px; object-fit: cover; display: block; }
+  .wine-info { padding: 1rem 1.1rem 1.2rem; }
+  .wine-sorte {
+    font-size: 0.68rem; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.08em; margin-bottom: 0.3rem;
+  }
+  .wine-sorte.weiss { color: var(--gold); }
+  .wine-sorte.rot { color: var(--wine); }
+  .wine-name {
+    font-family: 'Lora', serif;
+    font-size: 1.1rem; font-weight: 600; color: var(--dark);
+    margin-bottom: 0.25rem;
+  }
+  .wine-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
 
-  /* LIGHTBOX */
-  .lightbox { display: none; position: fixed; inset: 0; z-index: 999; background: rgba(26,18,8,0.96); align-items: center; justify-content: center; flex-direction: column; }
-  .lightbox.open { display: flex; }
-  .lightbox img { max-width: 90vw; max-height: 85vh; object-fit: contain; }
-  .lightbox-close { position: absolute; top: 2rem; right: 2rem; font-family: 'Josefin Sans', sans-serif; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); cursor: pointer; background: none; border: none; }
+  .bestell-box {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: 8px; padding: 2rem 2.5rem;
+    display: flex; align-items: center; justify-content: space-between;
+    margin-top: 2rem; gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .bestell-box p { font-size: 1rem; color: var(--muted); max-width: 480px; line-height: 1.6; }
+  .bestell-box p strong { color: var(--dark); }
 
-  /* BAUERNMARKT */
-  .markt-section { position: relative; overflow: hidden; min-height: 300px; display: flex; align-items: center; justify-content: center; }
+  /* ── GALERIE ── */
+  .galerie { padding: 5rem 2.5rem; background: var(--cream); }
+  .galerie-mosaic {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: 220px 220px;
+    gap: 0.7rem; margin-top: 2rem;
+  }
+  .gm-item { overflow: hidden; border-radius: 6px; cursor: pointer; }
+  .gm-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.45s ease, filter 0.3s; filter: saturate(0.92); display: block; }
+  .gm-item:hover img { transform: scale(1.06); filter: saturate(1.05); }
+  .gm-1 { grid-column: span 5; grid-row: span 2; } /* groß links */
+  .gm-2 { grid-column: span 4; }
+  .gm-3 { grid-column: span 3; }
+  .gm-4 { grid-column: span 3; }
+  .gm-5 { grid-column: span 4; }
+  .gm-6 { grid-column: span 5; }
+
+  /* lightbox */
+  .lightbox { display:none; position:fixed; inset:0; z-index:999; background:rgba(30,18,6,0.95); align-items:center; justify-content:center; }
+  .lightbox.open { display:flex; }
+  .lightbox img { max-width:92vw; max-height:88vh; object-fit:contain; border-radius:4px; }
+  .lb-close { position:absolute; top:1.5rem; right:1.5rem; color:#f0dfa8; font-size:1rem; font-weight:600; cursor:pointer; background:none; border:none; font-family:'Source Sans 3',sans-serif; }
+
+  /* ── BAUERNMARKT ── */
+  .markt { position: relative; overflow: hidden; }
   .markt-bg { position: absolute; inset: 0; }
-  .markt-bg img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.35) saturate(0.7); }
-  .markt-content { position: relative; z-index: 2; text-align: center; padding: 5rem 3rem; }
-  .markt-content .section-label { color: var(--gold); }
-  .markt-time { font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 300; color: var(--cream); font-style: italic; margin: 0.8rem 0; }
-  .markt-detail { font-family: 'Josefin Sans', sans-serif; font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(245,240,232,0.55); }
+  .markt-bg img { width:100%; height:100%; object-fit:cover; filter:brightness(0.4) saturate(0.8); }
+  .markt-inner {
+    position: relative; z-index: 2;
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center; gap: 3rem;
+    padding: 5rem 2.5rem;
+  }
+  .markt-text h2 {
+    font-family: 'Lora', serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 600; color: #faf6ef;
+    line-height: 1.2; margin-bottom: 1rem;
+  }
+  .markt-text h2 em { font-style: italic; color: #f0dfa8; }
+  .markt-text p { font-size: 1rem; color: rgba(250,246,239,0.7); line-height: 1.7; }
+  .markt-card {
+    background: rgba(250,246,239,0.1); backdrop-filter: blur(8px);
+    border: 1px solid rgba(250,246,239,0.2);
+    border-radius: 8px; padding: 2rem 2.5rem;
+    text-align: center;
+  }
+  .markt-card .tag { font-size:0.72rem; font-weight:600; text-transform:uppercase; letter-spacing:0.1em; color:#f0dfa8; margin-bottom:0.5rem; }
+  .markt-card .zeit { font-family:'Lora',serif; font-size:3rem; font-weight:600; color:#fff; line-height:1; }
+  .markt-card .tag2 { font-size:0.85rem; color:rgba(250,246,239,0.65); margin-top:0.3rem; }
+  .markt-card hr { border:none; border-top:1px solid rgba(250,246,239,0.2); margin:1.2rem 0; }
+  .markt-card .adresse { font-size:0.85rem; color:rgba(250,246,239,0.6); line-height:1.6; }
 
-  /* FAMILIE */
-  .familie-section { background: var(--green); padding: 6rem 3rem; }
-  .familie-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-top: 3rem; }
-  .familie-photo { position: relative; overflow: hidden; min-height: 480px; }
-  .familie-photo img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.7) saturate(0.8); transition: transform 0.5s; }
-  .familie-photo:hover img { transform: scale(1.03); }
-  .familie-photo-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(45,61,42,0.8) 0%, transparent 50%); }
-  .familie-photo-caption { position: absolute; bottom: 2.5rem; left: 2.5rem; font-size: 2rem; font-weight: 300; color: var(--cream); font-style: italic; }
-  .familie-content { padding: 4rem; display: flex; flex-direction: column; justify-content: center; }
-  .familie-quote { font-size: 1.3rem; font-style: italic; font-weight: 300; color: rgba(245,240,232,0.7); line-height: 1.8; margin: 1.5rem 0; }
-  .familie-quote cite { display: block; margin-top: 0.6rem; font-family: 'Josefin Sans', sans-serif; font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; font-style: normal; color: var(--gold); }
-  .familie-text { font-size: 1.05rem; font-weight: 300; line-height: 1.9; color: rgba(245,240,232,0.65); margin-bottom: 2rem; }
-  .familie-members { display: flex; gap: 0.8rem; flex-wrap: wrap; }
-  .familie-member { font-family: 'Josefin Sans', sans-serif; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); padding: 0.5rem 1.2rem; border: 1px solid rgba(184,150,90,0.35); }
+  /* ── FAMILIE ── */
+  .familie { background: var(--warm-white); padding: 5rem 2.5rem; }
+  .familie-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; margin-top: 2.5rem; }
+  .familie-foto-box { position: relative; }
+  .familie-foto-main { width: 100%; border-radius: 8px; overflow: hidden; }
+  .familie-foto-main img { width: 100%; height: 420px; object-fit: cover; display: block; filter: saturate(0.92); }
+  .familie-foto-klein {
+    position: absolute; bottom: -1.5rem; right: -1.5rem;
+    width: 140px; height: 140px;
+    border-radius: 6px; overflow: hidden;
+    border: 4px solid var(--warm-white);
+    box-shadow: 0 4px 16px rgba(44,31,14,0.2);
+  }
+  .familie-foto-klein img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .familie-zitat {
+    background: var(--light-green);
+    border-radius: 6px; padding: 1.4rem 1.6rem;
+    margin-bottom: 1.5rem;
+  }
+  .familie-zitat p {
+    font-family: 'Lora', serif; font-style: italic;
+    font-size: 1.1rem; color: var(--green); line-height: 1.7;
+    margin-bottom: 0.5rem;
+  }
+  .familie-zitat cite { font-size: 0.78rem; font-weight: 600; color: var(--muted); font-style: normal; text-transform: uppercase; letter-spacing: 0.06em; }
+  .familie-desc { font-size: 0.97rem; color: var(--muted); line-height: 1.8; margin-bottom: 1rem; }
+  .mitglieder { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 1.5rem; }
+  .mitglied {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: 20px; padding: 0.4rem 1rem;
+    font-size: 0.82rem; font-weight: 600; color: var(--dark);
+    display: flex; align-items: center; gap: 0.4rem;
+  }
+  .mitglied::before { content: '🍇'; font-size: 0.75rem; }
 
-  /* KONTAKT */
-  .kontakt-section { display: grid; grid-template-columns: 1fr 1fr; background: var(--dark); }
-  .kontakt-info { padding: 6rem 4rem; }
-  .kontakt-info .section-title { color: var(--cream); }
-  .contact-items { margin-top: 2.5rem; }
-  .contact-item { display: flex; gap: 1.5rem; align-items: flex-start; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
-  .contact-item:last-child { border-bottom: none; }
-  .contact-icon { font-size: 1.2rem; color: var(--gold); width: 1.5rem; flex-shrink: 0; margin-top: 0.1rem; }
-  .contact-label { font-family: 'Josefin Sans', sans-serif; font-size: 0.55rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.3rem; }
-  .contact-value { font-size: 1.05rem; color: var(--cream); line-height: 1.6; }
-  .contact-value a { color: var(--cream); text-decoration: none; }
-  .contact-value a:hover { color: var(--gold); }
-  .kontakt-photo { position: relative; overflow: hidden; min-height: 400px; }
-  .kontakt-photo img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.55) saturate(0.8); }
-  .kontakt-photo-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(26,18,8,0.4) 0%, transparent 50%); }
+  /* ── KONTAKT ── */
+  .kontakt { background: var(--dark); padding: 5rem 2.5rem; }
+  .kontakt-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .kontakt .sh-title { color: #faf6ef; }
+  .kontakt .sh-label { color: #f0dfa8; }
+  .kontakt .sh-label::after { background: #f0dfa8; }
+  .kontakt .sh-sub { color: rgba(250,246,239,0.6); }
+  .kontakt-karten { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
+  .kontakt-karte {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px; padding: 1.2rem 1.4rem;
+    display: flex; align-items: flex-start; gap: 1rem;
+    transition: background 0.2s;
+  }
+  .kontakt-karte:hover { background: rgba(255,255,255,0.08); }
+  .kk-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 0.1rem; }
+  .kk-label { font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(240,223,168,0.6); margin-bottom: 0.3rem; }
+  .kk-val { font-size: 0.95rem; color: rgba(250,246,239,0.85); line-height: 1.6; }
+  .kk-val a { color: #f0dfa8; text-decoration: none; }
+  .kk-val a:hover { text-decoration: underline; }
+  .kontakt-foto { border-radius: 8px; overflow: hidden; position: relative; }
+  .kontakt-foto img { width: 100%; height: 100%; min-height: 380px; object-fit: cover; display: block; filter: brightness(0.65) saturate(0.85); }
+  .kontakt-foto-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(44,31,14,0.6) 0%, transparent 50%);
+    border-radius: 8px;
+  }
+  .kontakt-foto-caption {
+    position: absolute; bottom: 1.5rem; left: 1.5rem;
+    font-family: 'Lora', serif; font-style: italic;
+    font-size: 1.1rem; color: rgba(250,246,239,0.8);
+  }
 
-  /* FOOTER */
-  footer { background: var(--dark); border-top: 1px solid rgba(255,255,255,0.06); padding: 2rem 3rem; display: flex; align-items: center; justify-content: space-between; }
-  .footer-name { font-size: 0.85rem; color: var(--muted); font-style: italic; }
-  .footer-links { display: flex; gap: 2rem; }
-  .footer-links a { font-family: 'Josefin Sans', sans-serif; font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
-  .footer-links a:hover { color: var(--gold); }
+  /* ── FOOTER ── */
+  footer {
+    background: #1a0f06; padding: 1.8rem 2.5rem;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-name { font-size: 0.88rem; color: rgba(250,246,239,0.4); font-style: italic; }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a { font-size: 0.78rem; color: rgba(250,246,239,0.4); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: #f0dfa8; }
 
-  /* RESPONSIVE */
+  /* ── RESPONSIVE ── */
   @media (max-width: 900px) {
-    nav { padding: 1rem 1.5rem; }
-    .nav-links { gap: 1rem; }
-    .nav-links a { font-size: 0.55rem; }
-    .hero { grid-template-columns: 1fr; }
-    .hero-left { padding: 7rem 2rem 3rem; }
-    .hero-right { min-height: 300px; }
-    .weingut-section { grid-template-columns: 1fr; }
-    .weingut-text { padding: 4rem 1.5rem; }
-    .wines-grid { grid-template-columns: repeat(2, 1fr); }
-    .galerie-grid { grid-template-columns: repeat(2, 1fr); }
-    .galerie-item.large { grid-column: span 2; }
-    .familie-grid { grid-template-columns: 1fr; }
-    .familie-content { padding: 2.5rem 1.5rem; }
-    .kontakt-section { grid-template-columns: 1fr; }
-    .kontakt-info { padding: 4rem 1.5rem; }
-    .news-band { flex-direction: column; }
-    .sortiment-section, .galerie-section, .familie-section { padding: 4rem 1.5rem; }
-    footer { flex-direction: column; gap: 1rem; text-align: center; }
+    nav { padding: 0.9rem 1.2rem; }
+    .nav-links { gap: 0.9rem; }
+    .nav-links a { font-size: 0.72rem; }
+    .hero-content { padding: 3rem 1.5rem 3.5rem; }
+    .hero-info-bar { display: none; }
+    .aktuelles { padding: 2.5rem 1.2rem; }
+    .aktuelles-grid { grid-template-columns: 1fr; }
+    .weingut, .sortiment, .galerie, .familie, .kontakt { padding: 3.5rem 1.2rem; }
+    .weingut-inner, .familie-inner, .kontakt-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .wines-grid { grid-template-columns: repeat(2,1fr); }
+    .galerie-mosaic { grid-template-columns: repeat(2,1fr); grid-template-rows: auto; }
+    .gm-1,.gm-2,.gm-3,.gm-4,.gm-5,.gm-6 { grid-column: span 1; grid-row: span 1; }
+    .gm-item { height: 180px; }
+    .markt-inner { grid-template-columns: 1fr; }
+    .familie-foto-klein { display: none; }
+    .bestell-box { flex-direction: column; align-items: flex-start; }
+    footer { flex-direction: column; text-align: center; }
   }
 </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
-  <a class="nav-logo" href="#">Weingut Gröbacher</a>
+  <a class="nav-logo" href="#">🍇 Weingut Gröbacher</a>
   <ul class="nav-links">
     <li><a href="#aktuelles">Aktuelles</a></li>
     <li><a href="#weingut">Weingut</a></li>
@@ -203,247 +424,383 @@
   </ul>
 </nav>
 
-<!-- HERO -->
+<!-- HERO — südsteirische Hügellandschaft -->
 <section class="hero">
-  <div class="hero-left">
-    <p class="hero-eyebrow">Südsteiermark · Seit Generationen</p>
-    <h1 class="hero-title">Weine aus<br>dem Herzen<br>der <em>Steiermark</em></h1>
-    <p class="hero-subtitle">Handarbeit, Leidenschaft und das einzigartige Terroir des Muschelkalks — das ist Gröbacher.</p>
-    <a class="hero-cta" href="#sortiment">Unser Sortiment entdecken →</a>
+  <div class="hero-bg">
+    <!-- Grüne geschwungene Weinberghügel wie in der Südsteiermark -->
+    <img src="https://images.unsplash.com/photo-1504279577054-acfeccf8fc52?w=1600&q=85&fit=crop&crop=center" alt="Südsteirische Weinberge">
   </div>
-  <div class="hero-right">
-    <img src="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=1200&q=80&fit=crop" alt="Weinberge Steiermark" loading="eager">
-    <div class="hero-badge">
-      <span>Lage</span>
-      <strong>OBEGG</strong>
-      <span>Spielfeld<br>4 ha</span>
+  <div class="hero-content">
+    <span class="hero-tag">Südsteiermark · Perbersdorf</span>
+    <h1 class="hero-title">Wein mit<br><em>Herz & Handarbeit</em><br>aus Spielfeld</h1>
+    <p class="hero-sub">Familie Gröbacher bewirtschaftet seit Generationen die Muschelkalk-Lage OBEGG — mit Leidenschaft, Naturverbundenheit und einem guten Glas als Lohn der Arbeit.</p>
+    <div class="hero-actions">
+      <a href="#sortiment" class="btn-main">Unsere Weine entdecken</a>
+      <a href="#kontakt" class="btn-ghost">Kontakt & Anfahrt</a>
+    </div>
+  </div>
+  <div class="hero-info-bar">
+    <div class="info-item">
+      <div class="info-val">4 ha</div>
+      <div class="info-lbl">Rebfläche</div>
+    </div>
+    <div class="info-item">
+      <div class="info-val">OBEGG</div>
+      <div class="info-lbl">Lage</div>
+    </div>
+    <div class="info-item">
+      <div class="info-val">5</div>
+      <div class="info-lbl">Familienmitglieder</div>
     </div>
   </div>
 </section>
 
 <!-- AKTUELLES -->
-<div class="news-band" id="aktuelles">
-  <div class="news-item">
-    <p class="news-date">Herbst 2021</p>
-    <h3 class="news-headline">Ernte 2021</h3>
-    <p class="news-text">Der trockene Sommer brachte eine großartige Traubenaromatik. Verkosten Sie den neuen Jahrgang als frischen Junker.</p>
+<section class="aktuelles" id="aktuelles">
+  <div class="sh">
+    <div class="sh-label">Aktuelles</div>
+    <h2 class="sh-title">Was gibt's <em>Neues</em> am Hof?</h2>
   </div>
-  <div class="news-item">
-    <p class="news-date">Jeden Freitag</p>
-    <h3 class="news-headline">Bauernmarkt</h3>
-    <p class="news-text">Von 8:00 bis 12:00 Uhr können Sie unsere Produkte frisch ab Hof erwerben. Wir freuen uns auf Ihren Besuch!</p>
+  <div class="aktuelles-grid">
+    <div class="aktuelle-karte">
+      <!-- Herbst Weinlese / Trauben -->
+      <img class="karte-img" src="https://images.unsplash.com/photo-1596142889980-6f072ff85499?w=600&q=80&fit=crop" alt="Ernte 2021">
+      <div class="karte-body">
+        <p class="karte-tag">Herbst 2021</p>
+        <h3 class="karte-titel">Ernte 2021 — ein toller Jahrgang!</h3>
+        <p class="karte-text">Der trockene Sommer brachte eine außergewöhnliche Traubenaromatik. Verkosten Sie den neuen Jahrgang als frischen Junker — wir freuen uns auf Ihren Besuch!</p>
+      </div>
+    </div>
+    <div class="aktuelle-karte">
+      <!-- Bauernmarkt / frische Produkte -->
+      <img class="karte-img" src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=600&q=80&fit=crop" alt="Bauernmarkt">
+      <div class="karte-body">
+        <p class="karte-tag">Jeden Freitag</p>
+        <h3 class="karte-titel">Freitags-Bauernmarkt</h3>
+        <p class="karte-text">Von 8:00 bis 12:00 Uhr können Sie unsere Produkte frisch ab Hof erwerben. Kommen Sie vorbei und plaudern Sie mit uns!</p>
+      </div>
+    </div>
+    <div class="aktuelle-karte">
+      <!-- Sekt / Frizzante Gläser -->
+      <img class="karte-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80&fit=crop&crop=top" alt="Frizzante">
+      <div class="karte-body">
+        <p class="karte-tag">Neu & Prickelnd</p>
+        <h3 class="karte-titel">Sämling Frizzante</h3>
+        <p class="karte-text">Unser prickelnder Genuss für Ihre Festlichkeiten — der Frizzante aus der steirischen Sämling-88-Traube.</p>
+      </div>
+    </div>
   </div>
-  <div class="news-item">
-    <p class="news-date">Das Besondere</p>
-    <h3 class="news-headline">Sämling Frizzante</h3>
-    <p class="news-text">Der prickelnde Genuss für Ihre Festlichkeiten — unser beliebter Frizzante aus der Sorte Sämling 88.</p>
-  </div>
-</div>
+</section>
 
 <!-- WEINGUT -->
-<div class="weingut-section" id="weingut">
-  <div class="weingut-text">
-    <p class="section-label" style="color:var(--gold)">Das Weingut</p>
-    <h2 class="section-title" style="color:var(--cream)">Einfachheit als <em style="color:var(--gold)">Stärke</em></h2>
-    <p>Unser Weinhof besticht durch seine Einfachheit. Unsere Lage OBEGG, die sich im Ausmaß von 4 ha in Spielfeld befindet, ist geprägt von Muschelkalkgestein aus der Entstehungsgeschichte der Erde.</p>
-    <p>Dieses Terra verleiht unseren Weinen eine besondere Ausdruckskraft. So ist es unser Auftrag, mit diesen Ressourcen behutsam umzugehen und der Typizität der Südsteiermark in unseren Weinen Ausdruck zu verleihen.</p>
-    <div class="quote-block">„Überzeugen Sie sich selbst davon — durch den Genuss unserer Weine."</div>
-  </div>
-  <div class="weingut-photos">
-    <div class="weingut-photo-top">
-      <img src="https://images.unsplash.com/photo-1474722883778-792e7990302f?w=900&q=80&fit=crop" alt="Weinreben Obegg">
-    </div>
-    <div class="weingut-photo-bottom">
-      <div class="photo-tile">
-        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80&fit=crop" alt="Weinkeller">
-        <span class="photo-tile-label">Weinkeller</span>
+<section class="weingut" id="weingut">
+  <div class="weingut-inner">
+    <div class="weingut-fotos">
+      <!-- Hauptfoto: südsteirische Weinbergreihen -->
+      <div class="wf-main">
+        <img src="https://images.unsplash.com/photo-1474722883778-792e7990302f?w=900&q=85&fit=crop" alt="Weinreben Lage OBEGG">
       </div>
-      <div class="photo-tile">
-        <img src="https://images.unsplash.com/photo-1596142889980-6f072ff85499?w=600&q=80&fit=crop" alt="Trauben Ernte">
-        <span class="photo-tile-label">Ernte</span>
+      <!-- Klein links: Weinkeller Holzfässer -->
+      <div class="wf-small">
+        <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=500&q=80&fit=crop&crop=center" alt="Weinkeller">
+        <span class="wf-lbl">Weinkeller</span>
+      </div>
+      <!-- Klein rechts: Muschelkalk / Boden -->
+      <div class="wf-small">
+        <img src="https://images.unsplash.com/photo-1500076656116-558758c991c1?w=500&q=80&fit=crop&crop=center" alt="Ernte">
+        <span class="wf-lbl">Handarbeit</span>
       </div>
     </div>
+    <div class="weingut-text">
+      <div class="sh">
+        <div class="sh-label">Das Weingut</div>
+        <h2 class="sh-title">Einfach gut —<br><em>seit Generationen</em></h2>
+      </div>
+      <p>Unser Weinhof besticht durch seine Einfachheit. Die Lage <strong>OBEGG</strong> in Spielfeld — 4 Hektar reinster Muschelkalk aus der Entstehungszeit der Erde — ist der Boden, auf dem unsere Weine ihre besondere Ausdruckskraft bekommen.</p>
+      <div class="zitat">„Dieses Terra verleiht unseren Weinen eine besondere Ausdruckskraft. Es ist unser Auftrag, mit diesen Ressourcen behutsam umzugehen."</div>
+      <p>So spiegelt sich die Typizität der Südsteiermark in jedem Schluck wider — naturnaher Geschmack, ehrlich und ohne Umwege.</p>
+      <div class="terroir-chips">
+        <div class="chip"><span>📍</span> Spielfeld, Südsteiermark</div>
+        <div class="chip"><span>🪨</span> Muschelkalkboden</div>
+        <div class="chip"><span>🌿</span> 4 ha Rebfläche</div>
+        <div class="chip"><span>✋</span> Handarbeit</div>
+      </div>
+    </div>
   </div>
-</div>
+</section>
 
 <!-- SORTIMENT -->
-<section class="sortiment-section" id="sortiment">
-  <p class="section-label">Unser Sortiment</p>
-  <h2 class="section-title">Weißweine &amp; <em>Rotweine</em></h2>
+<section class="sortiment" id="sortiment">
+  <div class="sh">
+    <div class="sh-label">Unser Sortiment</div>
+    <h2 class="sh-title">Unsere <em>Weine</em></h2>
+    <p class="sh-sub">Vom frischen Junker bis zum körperreichen Zweigelt — alle Weine entstehen in liebevoller Handarbeit auf unserer Muschelkalk-Lage OBEGG.</p>
+  </div>
   <div class="wine-tabs">
-    <button class="wine-tab active" onclick="showWines('weiss',this)">Weißweine</button>
-    <button class="wine-tab" onclick="showWines('rot',this)">Rotweine</button>
+    <button class="wine-tab active-weiss" onclick="showWines('weiss',this)">🥂 Weißweine</button>
+    <button class="wine-tab" onclick="showWines('rot',this)">🍷 Rotweine</button>
   </div>
 
+  <!-- WEISSWEINE — Fotos passend zur Sorte -->
   <div class="wines-grid" id="weiss-wines">
-    <div class="wine-card weiss">
-      <img class="wine-card-img" src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&q=75&fit=crop" alt="Junker">
-      <div class="wine-card-body"><p class="wine-name">Junker</p><p class="wine-type">Jungwein · Frisch</p></div>
+
+    <div class="wine-card">
+      <!-- Junker: junger Weißwein / frisch – Weinglas -->
+      <img class="wine-photo" src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&q=80&fit=crop&crop=center" alt="Junker">
+      <div class="wine-info">
+        <div class="wine-sorte weiss">Weißwein · Jungwein</div>
+        <div class="wine-name">Junker</div>
+        <div class="wine-desc">Frisch, fruchtig, unkompliziert — der erste Schluck des neuen Jahrgangs.</div>
+      </div>
     </div>
-    <div class="wine-card weiss">
-      <img class="wine-card-img" src="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=400&q=75&fit=crop&crop=top" alt="Welschriesling">
-      <div class="wine-card-body"><p class="wine-name">Welschriesling</p><p class="wine-type">Weißwein · Trocken</p></div>
+
+    <div class="wine-card">
+      <!-- Welschriesling: klassischer Weißwein, helle Traube -->
+      <img class="wine-photo" src="https://images.unsplash.com/photo-1474722883778-792e7990302f?w=400&q=80&fit=crop&crop=top" alt="Welschriesling">
+      <div class="wine-info">
+        <div class="wine-sorte weiss">Weißwein · Trocken</div>
+        <div class="wine-name">Welschriesling</div>
+        <div class="wine-desc">Frisch-fruchtiger Klassiker der Steiermark mit lebendiger Säure.</div>
+      </div>
     </div>
-    <div class="wine-card weiss">
-      <img class="wine-card-img" src="https://images.unsplash.com/photo-1574096079513-d8259312b785?w=400&q=75&fit=crop" alt="Scheurebe">
-      <div class="wine-card-body"><p class="wine-name">Scheurebe</p><p class="wine-type">Weißwein · Aromatisch</p></div>
+
+    <div class="wine-card">
+      <!-- Scheurebe: aromatische Weißtraube / Blüten -->
+      <img class="wine-photo" src="https://images.unsplash.com/photo-1504279577054-acfeccf8fc52?w=400&q=80&fit=crop&crop=bottom" alt="Scheurebe">
+      <div class="wine-info">
+        <div class="wine-sorte weiss">Weißwein · Aromatisch</div>
+        <div class="wine-name">Scheurebe</div>
+        <div class="wine-desc">Exotische Aromen, vollmundig und charakterstark vom Muschelkalk.</div>
+      </div>
     </div>
-    <div class="wine-card weiss">
-      <img class="wine-card-img" src="https://images.unsplash.com/photo-1547595628-c61a29f496f0?w=400&q=75&fit=crop" alt="Chardonnay">
-      <div class="wine-card-body"><p class="wine-name">Chardonnay</p><p class="wine-type">Weißwein · Trocken</p></div>
+
+    <div class="wine-card">
+      <!-- Chardonnay: heller, eleganter Weißwein -->
+      <img class="wine-photo" src="https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?w=400&q=80&fit=crop&crop=center" alt="Chardonnay">
+      <div class="wine-info">
+        <div class="wine-sorte weiss">Weißwein · Trocken</div>
+        <div class="wine-name">Chardonnay</div>
+        <div class="wine-desc">Elegant und ausgewogen — mit feiner Frucht und schöner Länge.</div>
+      </div>
     </div>
-    <div class="wine-card weiss">
-      <img class="wine-card-img" src="https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?w=400&q=75&fit=crop" alt="Weißburgunder">
-      <div class="wine-card-body"><p class="wine-name">Weißburgunder</p><p class="wine-type">Weißwein · Elegant</p></div>
+
+    <div class="wine-card">
+      <!-- Weißburgunder: Weinflaschen im Keller / Holz -->
+      <img class="wine-photo" src="https://images.unsplash.com/photo-1566378246598-5b11a0d486cc?w=400&q=80&fit=crop&crop=top" alt="Weißburgunder">
+      <div class="wine-info">
+        <div class="wine-sorte weiss">Weißwein · Elegant</div>
+        <div class="wine-name">Weißburgunder</div>
+        <div class="wine-desc">Feiner, dezenter Stil mit zartem Schmelz und angenehmer Frische.</div>
+      </div>
     </div>
-    <div class="wine-card weiss">
-      <img class="wine-card-img" src="https://images.unsplash.com/photo-1474722883778-792e7990302f?w=400&q=75&fit=crop&crop=bottom" alt="Sauvignon Blanc">
-      <div class="wine-card-body"><p class="wine-name">Sauvignon Blanc</p><p class="wine-type">Weißwein · Frisch</p></div>
+
+    <div class="wine-card">
+      <!-- Sauvignon Blanc: grüne Kräuter, Wiesen — Weinberg grün -->
+      <img class="wine-photo" src="https://images.unsplash.com/photo-1500076656116-558758c991c1?w=400&q=80&fit=crop&crop=center" alt="Sauvignon Blanc">
+      <div class="wine-info">
+        <div class="wine-sorte weiss">Weißwein · Frisch</div>
+        <div class="wine-name">Sauvignon Blanc</div>
+        <div class="wine-desc">Typisch steirisch — würzig, kräuterig, mit knackiger Säure.</div>
+      </div>
     </div>
-    <div class="wine-card weiss">
-      <img class="wine-card-img" src="https://images.unsplash.com/photo-1536935338788-846bb9981813?w=400&q=75&fit=crop" alt="Frizzante">
-      <div class="wine-card-body"><p class="wine-name">Frizzante</p><p class="wine-type">Sämling 88 · Prickelnd</p></div>
+
+    <div class="wine-card">
+      <!-- Frizzante: Gläser mit Bläschen / prickelnd -->
+      <img class="wine-photo" src="https://images.unsplash.com/photo-1536935338788-846bb9981813?w=400&q=80&fit=crop&crop=center" alt="Frizzante">
+      <div class="wine-info">
+        <div class="wine-sorte weiss">Frizzante · Prickelnd</div>
+        <div class="wine-name">Sämling Frizzante</div>
+        <div class="wine-desc">Prickelnd, leicht und festlich — aus der steirischen Sämling-88-Traube.</div>
+      </div>
     </div>
+
   </div>
 
+  <!-- ROTWEINE -->
   <div class="wines-grid hidden" id="rot-wines">
-    <div class="wine-card rot">
-      <img class="wine-card-img" src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&q=75&fit=crop&crop=right" alt="Zweigelt">
-      <div class="wine-card-body"><p class="wine-name">Zweigelt</p><p class="wine-type">Rotwein · Südsteiermark</p></div>
+
+    <div class="wine-card">
+      <!-- Zweigelt: dunkle Rotweintraube / dunkles Glas -->
+      <img class="wine-photo" src="https://images.unsplash.com/photo-1547595628-c61a29f496f0?w=400&q=80&fit=crop&crop=center" alt="Zweigelt">
+      <div class="wine-info">
+        <div class="wine-sorte rot">Rotwein · Trocken</div>
+        <div class="wine-name">Zweigelt</div>
+        <div class="wine-desc">Vollmundig, samtig-weich mit dunklen Beerenfrüchten — typischer steirischer Zweigelt.</div>
+      </div>
     </div>
-    <div class="wine-card rot">
-      <img class="wine-card-img" src="https://images.unsplash.com/photo-1547595628-c61a29f496f0?w=400&q=75&fit=crop&crop=right" alt="Roter Obegg">
-      <div class="wine-card-body"><p class="wine-name">Roter OBEGG</p><p class="wine-type">Rotwein · Lagenwein</p></div>
+
+    <div class="wine-card">
+      <!-- Roter Obegg: dunkler Lagenwein / Weinkeller -->
+      <img class="wine-photo" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80&fit=crop&crop=center" alt="Roter Obegg">
+      <div class="wine-info">
+        <div class="wine-sorte rot">Rotwein · Lagenwein</div>
+        <div class="wine-name">Roter OBEGG</div>
+        <div class="wine-desc">Unser Aushängeschild — kraftvoll und komplex, direkt aus dem Muschelkalk der Lage OBEGG.</div>
+      </div>
     </div>
+
   </div>
 
-  <div class="order-cta">
-    <a href="mailto:weingut@groebacherwein.at" class="btn-primary">Jetzt bestellen</a>
+  <div class="bestell-box">
+    <p><strong>Interesse an unseren Weinen?</strong> Schreiben Sie uns einfach eine E-Mail oder kommen Sie freitags beim Bauernmarkt vorbei — wir freuen uns auf Sie!</p>
+    <a href="mailto:weingut@groebacherwein.at" class="btn-main">📧 Jetzt bestellen</a>
   </div>
 </section>
 
 <!-- GALERIE -->
-<section class="galerie-section" id="galerie">
-  <p class="section-label">Bildergalerie</p>
-  <h2 class="section-title">Eindrücke vom <em>Weingut</em></h2>
-  <div class="galerie-grid">
-    <div class="galerie-item large" onclick="openLightbox(this)">
-      <img src="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=1200&q=80&fit=crop" alt="Weinberg Panorama" loading="lazy">
+<section class="galerie" id="galerie">
+  <div class="sh">
+    <div class="sh-label">Bildergalerie</div>
+    <h2 class="sh-title">Einblicke in <em>unseren Hof</em></h2>
+  </div>
+  <div class="galerie-mosaic">
+    <!-- Großes Bild: südsteirische Weinberglandschaft -->
+    <div class="gm-item gm-1" onclick="openLb(this)">
+      <img src="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=1200&q=85&fit=crop" alt="Weinberglandschaft Südsteiermark" loading="lazy">
     </div>
-    <div class="galerie-item" onclick="openLightbox(this)">
-      <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=600&q=80&fit=crop" alt="Weinverkostung" loading="lazy">
+    <!-- Trauben am Rebstock -->
+    <div class="gm-item gm-2" onclick="openLb(this)">
+      <img src="https://images.unsplash.com/photo-1596142889980-6f072ff85499?w=700&q=80&fit=crop" alt="Trauben am Rebstock" loading="lazy">
     </div>
-    <div class="galerie-item" onclick="openLightbox(this)">
-      <img src="https://images.unsplash.com/photo-1596142889980-6f072ff85499?w=600&q=80&fit=crop" alt="Weintrauben" loading="lazy">
+    <!-- Weinberg Reihen grün -->
+    <div class="gm-item gm-3" onclick="openLb(this)">
+      <img src="https://images.unsplash.com/photo-1474722883778-792e7990302f?w=500&q=80&fit=crop&crop=center" alt="Weinreben" loading="lazy">
     </div>
-    <div class="galerie-item" onclick="openLightbox(this)">
-      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80&fit=crop" alt="Weinkeller" loading="lazy">
+    <!-- Weinflaschen Keller -->
+    <div class="gm-item gm-4" onclick="openLb(this)">
+      <img src="https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?w=500&q=80&fit=crop" alt="Weinflaschen" loading="lazy">
     </div>
-    <div class="galerie-item" onclick="openLightbox(this)">
-      <img src="https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?w=600&q=80&fit=crop" alt="Weinflaschen" loading="lazy">
+    <!-- Weinglas draußen / Weinberg -->
+    <div class="gm-item gm-5" onclick="openLb(this)">
+      <img src="https://images.unsplash.com/photo-1547595628-c61a29f496f0?w=700&q=80&fit=crop&crop=center" alt="Weingenuss im Freien" loading="lazy">
     </div>
-    <div class="galerie-item" onclick="openLightbox(this)">
-      <img src="https://images.unsplash.com/photo-1474722883778-792e7990302f?w=600&q=80&fit=crop" alt="Weinreben" loading="lazy">
-    </div>
-    <div class="galerie-item" onclick="openLightbox(this)">
-      <img src="https://images.unsplash.com/photo-1547595628-c61a29f496f0?w=600&q=80&fit=crop" alt="Weingenuss" loading="lazy">
-    </div>
-    <div class="galerie-item" onclick="openLightbox(this)">
-      <img src="https://images.unsplash.com/photo-1574096079513-d8259312b785?w=600&q=80&fit=crop" alt="Weinlese" loading="lazy">
+    <!-- Holzfässer Keller -->
+    <div class="gm-item gm-6" onclick="openLb(this)">
+      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80&fit=crop" alt="Weinkeller" loading="lazy">
     </div>
   </div>
 </section>
 
-<div class="lightbox" id="lightbox" onclick="closeLightbox()">
-  <button class="lightbox-close">Schließen ✕</button>
-  <img id="lightbox-img" src="" alt="">
+<div class="lightbox" id="lb" onclick="closeLb()">
+  <button class="lb-close">✕ Schließen</button>
+  <img id="lb-img" src="" alt="">
 </div>
 
 <!-- BAUERNMARKT -->
-<div class="markt-section">
+<div class="markt">
   <div class="markt-bg">
-    <img src="https://images.unsplash.com/photo-1519996529931-28324d5a630e?w=1400&q=80&fit=crop" alt="Bauernmarkt">
+    <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=1600&q=80&fit=crop" alt="Bauernmarkt frische Produkte">
   </div>
-  <div class="markt-content">
-    <p class="section-label">Direkt ab Hof</p>
-    <p class="markt-detail">Bauernmarkt — Jeden Freitag</p>
-    <p class="markt-time">8:00 – 12:00 Uhr</p>
-    <p class="markt-detail">Perbersdorf 1 · 8423 St. Veit in der Südsteiermark</p>
+  <div class="markt-inner">
+    <div class="markt-text">
+      <div class="sh-label" style="color:#f0dfa8;margin-bottom:0.8rem">Direkt ab Hof</div>
+      <h2>Jeden Freitag am<br><em>Bauernmarkt</em></h2>
+      <p style="margin-top:1rem;color:rgba(250,246,239,0.7)">Kommen Sie vorbei, schauen Sie sich um und nehmen Sie ein gutes Glas nach Hause mit. Wir freuen uns über jeden Besuch und erzählen gerne, was hinter unseren Weinen steckt.</p>
+    </div>
+    <div class="markt-card">
+      <div class="tag">📅 Bauernmarkt</div>
+      <div class="zeit">8–12 Uhr</div>
+      <div class="tag2">Jeden Freitag</div>
+      <hr>
+      <div class="adresse">
+        Perbersdorf 1<br>
+        8423 St. Veit in der Südsteiermark<br>
+        <span style="color:rgba(240,223,168,0.7);font-size:0.78rem">Abfahrt Vogau–Straß</span>
+      </div>
+    </div>
   </div>
 </div>
 
 <!-- FAMILIE -->
-<section class="familie-section" id="familie">
-  <p class="section-label">Die Familie</p>
-  <h2 class="section-title" style="color:var(--cream)">Brigitte &amp; Robert <em style="color:var(--gold)">Gröbacher</em></h2>
-  <div class="familie-grid">
-    <div class="familie-photo">
-      <img src="https://images.unsplash.com/photo-1504279577054-acfeccf8fc52?w=900&q=80&fit=crop" alt="Familie am Weingut" loading="lazy">
-      <div class="familie-photo-overlay"></div>
-      <p class="familie-photo-caption">Familienbetrieb</p>
+<section class="familie" id="familie">
+  <div class="sh">
+    <div class="sh-label">Die Familie</div>
+    <h2 class="sh-title">Brigitte, Robert &<br><em>die ganze Familie Gröbacher</em></h2>
+  </div>
+  <div class="familie-inner">
+    <div class="familie-foto-box">
+      <div class="familie-foto-main">
+        <!-- Winzer/Bäuerin bei der Arbeit im Weinberg -->
+        <img src="https://images.unsplash.com/photo-1500076656116-558758c991c1?w=800&q=85&fit=crop&crop=center" alt="Familie Gröbacher am Weingut">
+      </div>
+      <div class="familie-foto-klein">
+        <!-- Kleines Bild: Hände beim Trauben pflücken -->
+        <img src="https://images.unsplash.com/photo-1596142889980-6f072ff85499?w=300&q=80&fit=crop&crop=top" alt="Weinlese">
+      </div>
     </div>
-    <div class="familie-content">
-      <div class="familie-quote">
-        „Schau dir die Natur an und du wirst alles verstehen."
+    <div>
+      <div class="familie-zitat">
+        <p>„Schau dir die Natur an und du wirst alles verstehen."</p>
         <cite>— Albert Einstein</cite>
       </div>
-      <p class="familie-text">Als Familienbetrieb ist es uns wichtig, die in liebevoller Handarbeit hergestellten Produkte mit unserer persönlichen Handschrift zu versehen. Kreativität, Individualität, naturnaher Geschmack und Überliefertes verbunden mit modernem Wissen — das sind die Werte, die unsere Arbeit leiten.</p>
-      <p class="familie-text">Wir laden Sie herzlich ein, auf unseren Hof zu kommen und unsere Produkte zu verkosten!</p>
-      <div class="familie-members">
-        <span class="familie-member">Johannes</span>
-        <span class="familie-member">Robert</span>
-        <span class="familie-member">Brigitte</span>
-        <span class="familie-member">Sarah</span>
-        <span class="familie-member">Simon</span>
+      <p class="familie-desc">Als Familienbetrieb ist es uns wichtig, die in liebevoller Handarbeit hergestellten Produkte mit unserer persönlichen Handschrift zu versehen. Kreativität, Individualität, naturnaher Geschmack — das sind die Werte, die unsere Arbeit leiten.</p>
+      <p class="familie-desc">Überliefertes verbunden mit modernem Wissen: So entstehen Weine, die nach Steiermark schmecken und nach Zuhause.</p>
+      <p class="familie-desc" style="font-weight:600;color:var(--dark)">Wir laden Sie herzlich ein, auf unseren Hof zu kommen und unsere Produkte zu verkosten!</p>
+      <div class="mitglieder">
+        <span class="mitglied">Johannes</span>
+        <span class="mitglied">Robert</span>
+        <span class="mitglied">Brigitte</span>
+        <span class="mitglied">Sarah</span>
+        <span class="mitglied">Simon</span>
       </div>
     </div>
   </div>
 </section>
 
 <!-- KONTAKT -->
-<div class="kontakt-section" id="kontakt">
-  <div class="kontakt-info">
-    <p class="section-label">Kontakt & Anfahrt</p>
-    <h2 class="section-title">Besuchen Sie <em style="color:var(--gold)">uns</em></h2>
-    <div class="contact-items">
-      <div class="contact-item">
-        <div class="contact-icon">📍</div>
-        <div>
-          <p class="contact-label">Adresse</p>
-          <p class="contact-value">Perbersdorf 1<br>8423 St. Veit in der Südsteiermark<br>Steiermark, Österreich</p>
-        </div>
+<section class="kontakt" id="kontakt">
+  <div class="kontakt-inner">
+    <div>
+      <div class="sh">
+        <div class="sh-label">Kontakt & Anfahrt</div>
+        <h2 class="sh-title" style="color:#faf6ef">Wir freuen uns<br><em>auf Ihren Besuch</em></h2>
+        <p class="sh-sub">Ob beim Bauernmarkt, ab Hof oder per E-Mail — Familie Gröbacher ist immer für Sie da.</p>
       </div>
-      <div class="contact-item">
-        <div class="contact-icon">📞</div>
-        <div>
-          <p class="contact-label">Telefon</p>
-          <p class="contact-value"><a href="tel:+4334728102">+43 3472 8102</a><br><a href="tel:+436642740544">+43 664 2740544</a></p>
+      <div class="kontakt-karten">
+        <div class="kontakt-karte">
+          <span class="kk-icon">📍</span>
+          <div>
+            <div class="kk-label">Adresse</div>
+            <div class="kk-val">Perbersdorf 1 · 8423 St. Veit in der Südsteiermark<br>Bezirk Leibnitz, Steiermark</div>
+          </div>
         </div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-icon">✉️</div>
-        <div>
-          <p class="contact-label">E-Mail</p>
-          <p class="contact-value"><a href="mailto:weingut@groebacherwein.at">weingut@groebacherwein.at</a></p>
+        <div class="kontakt-karte">
+          <span class="kk-icon">📞</span>
+          <div>
+            <div class="kk-label">Telefon</div>
+            <div class="kk-val">
+              <a href="tel:+4334728102">+43 3472 8102</a><br>
+              <a href="tel:+436642740544">+43 664 2740544</a>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-icon">🚗</div>
-        <div>
-          <p class="contact-label">Anreise</p>
-          <p class="contact-value">Nächste Autobahnabfahrt:<br>Vogau–Straß</p>
+        <div class="kontakt-karte">
+          <span class="kk-icon">✉️</span>
+          <div>
+            <div class="kk-label">E-Mail</div>
+            <div class="kk-val"><a href="mailto:weingut@groebacherwein.at">weingut@groebacherwein.at</a></div>
+          </div>
+        </div>
+        <div class="kontakt-karte">
+          <span class="kk-icon">🚗</span>
+          <div>
+            <div class="kk-label">Anreise</div>
+            <div class="kk-val">Autobahn A9 · Abfahrt Vogau–Straß</div>
+          </div>
         </div>
       </div>
     </div>
+    <div class="kontakt-foto">
+      <!-- Südsteirische Landschaft / Hof -->
+      <img src="https://images.unsplash.com/photo-1566378246598-5b11a0d486cc?w=900&q=80&fit=crop" alt="Weingut Gröbacher Südsteiermark" loading="lazy">
+      <div class="kontakt-foto-overlay"></div>
+      <div class="kontakt-foto-caption">Südsteiermark — das grüne Weinparadies</div>
+    </div>
   </div>
-  <div class="kontakt-photo">
-    <img src="https://images.unsplash.com/photo-1566378246598-5b11a0d486cc?w=900&q=80&fit=crop" alt="Südsteiermark Weinberge" loading="lazy">
-    <div class="kontakt-photo-overlay"></div>
-  </div>
-</div>
+</section>
 
 <footer>
-  <p class="footer-name">© Weingut Gröbacher · Brigitte & Robert Gröbacher</p>
+  <p class="footer-name">© Weingut Gröbacher · Brigitte & Robert Gröbacher · Perbersdorf 1 · 8423 St. Veit i.d. Südsteiermark</p>
   <div class="footer-links">
     <a href="https://www.groebacherwein.at/impressum">Impressum</a>
     <a href="mailto:weingut@groebacherwein.at">Kontakt</a>
@@ -451,40 +808,46 @@
 </footer>
 
 <script>
+// Wine tab switcher
 function showWines(type, btn) {
-  document.querySelectorAll('.wine-tab').forEach(t => t.classList.remove('active'));
-  btn.classList.add('active');
+  document.querySelectorAll('.wine-tab').forEach(t => {
+    t.classList.remove('active-weiss','active-rot');
+  });
+  btn.classList.add(type === 'weiss' ? 'active-weiss' : 'active-rot');
   document.getElementById('weiss-wines').classList.toggle('hidden', type !== 'weiss');
   document.getElementById('rot-wines').classList.toggle('hidden', type !== 'rot');
 }
 
-function openLightbox(el) {
-  const src = el.querySelector('img').src.replace('w=600', 'w=1400');
-  document.getElementById('lightbox-img').src = src;
-  document.getElementById('lightbox').classList.add('open');
+// Lightbox
+function openLb(el) {
+  const img = el.querySelector('img');
+  const big = img.src.replace(/w=\d+/, 'w=1600').replace(/q=\d+/, 'q=90');
+  document.getElementById('lb-img').src = big;
+  document.getElementById('lb').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
-function closeLightbox() {
-  document.getElementById('lightbox').classList.remove('open');
+function closeLb() {
+  document.getElementById('lb').classList.remove('open');
   document.body.style.overflow = '';
 }
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
 
-const observer = new IntersectionObserver(entries => {
+// Sanftes Einblenden beim Scrollen
+const obs = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) {
       e.target.style.opacity = '1';
       e.target.style.transform = 'translateY(0)';
-      observer.unobserve(e.target);
+      obs.unobserve(e.target);
     }
   });
-}, { threshold: 0.08 });
+}, { threshold: 0.07 });
 
-document.querySelectorAll('.wine-card, .news-item, .contact-item, .familie-member, .galerie-item').forEach((el, i) => {
+document.querySelectorAll('.wine-card, .aktuelle-karte, .kontakt-karte, .mitglied, .gm-item, .chip').forEach((el, i) => {
   el.style.opacity = '0';
-  el.style.transform = 'translateY(22px)';
-  el.style.transition = `opacity 0.6s ease ${i * 0.05}s, transform 0.6s ease ${i * 0.05}s`;
-  observer.observe(el);
+  el.style.transform = 'translateY(18px)';
+  el.style.transition = `opacity 0.55s ease ${i*0.04}s, transform 0.55s ease ${i*0.04}s`;
+  obs.observe(el);
 });
 </script>
 </body>
